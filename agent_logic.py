@@ -1,7 +1,8 @@
 import json
+import os
 from openai import OpenAI
 client = OpenAI(
-  api_key='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'
+  api_key=os.getenv("OPENAI_API_KEY")
 )
 from functionsDefinitions import TOOLS
 from functionLogics import get_weather
