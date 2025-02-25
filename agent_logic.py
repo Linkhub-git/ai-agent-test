@@ -31,14 +31,41 @@ def call_function(name, args):
     if name == "case_resolution":
         return case_resolution(**args)
     
+def chat_completion_message_to_dict(message):
+    """
+    Convierte un objeto ChatCompletionMessage a un diccionario.
+    """
+    return {
+        "role": message.role,
+        "content": message.content,
+        "tool_call_id": getattr(message, "tool_call_id", None)
+    }
+
+def dict_to_chat_completion_message(data):
+    """
+    Convierte un diccionario a un objeto ChatCompletionMessage.
+    """
+    return ChatCompletionMessage(
+        role=data["role"],
+        content=data["content"],
+        tool_call_id=data.get("tool_call_id")
+    )
+
 def save_array_to_file(array, file_path):
     """
     Guarda un array de objetos en un archivo de texto.
     """
-    json_string = json.dumps(array, indent=4)
+    serializable_array = []
+    for item in array:
+        if isinstance(item, ChatCompletionMessage):
+            serializable_array.append(chat_completion_message_to_dict(item))
+        else:
+            serializable_array.append(item)
+    
+    json_string = json.dumps(serializable_array, indent=4)
     with open(file_path, 'w') as file:
         file.write(json_string)
-    print(f"Array de objetos guardado en {file_path}")    
+    print(f"Array de objetos guardado en {file_path}")
 
 def read_array_from_file(file_path):
     """
@@ -47,7 +74,13 @@ def read_array_from_file(file_path):
     with open(file_path, 'r') as file:
         json_string = file.read()
         array_de_objetos = json.loads(json_string)
-        return array_de_objetos
+        deserialized_array = []
+        for item in array_de_objetos:
+            if "role" in item and "content" in item:
+                deserialized_array.append(dict_to_chat_completion_message(item))
+            else:
+                deserialized_array.append(item)
+        return deserialized_array
 
 def ask_ai_agent(query, model="gpt-3.5-turbo"):
     """
@@ -76,9 +109,11 @@ def ask_ai_agent(query, model="gpt-3.5-turbo"):
                 
             )
 
-            if completion.choices[0].message.content:
-                messages.append({"role": "assistant", "content":completion.choices[0].message.content})  # append model's function call message
+            
+            
             if completion.choices[0].message.tool_calls and len(completion.choices[0].message.tool_calls) > 0:
+                # append model's function call message
+                messages.append(completion.choices[0].message)
                 for tool_call in completion.choices[0].message.tool_calls:
                     name = tool_call.function.name
                     args = json.loads(tool_call.function.arguments)
@@ -93,6 +128,7 @@ def ask_ai_agent(query, model="gpt-3.5-turbo"):
                 continue
             
             condicion = False
+            messages.append({"role": "assistant", "content":completion.choices[0].message.content}) 
             save_array_to_file(messages, 'memory/messages.txt')
             print("ask_ai_agent completion END")
             return completion.choices[0].message.content    
