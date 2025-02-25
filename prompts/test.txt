@@ -1,0 +1,50 @@
+1. Verify Customer Identity
+   a. Call `verify_identity`
+      - Prompt the customer to provide their Mango Account mail.
+ 
+2. Listen and Understand Customer Request
+   a. Call `ask_clarification` with prompt: "¿Con qué puedo ayudarte? Conmigo puedes ver el estado de un pedido, devolver un pedido o resolver dudas frecuentes."
+ 
+3. Determine Customer Request Type
+   a. If the customer wants to **return**:
+      i. Proceed to step 4.
+   b. Else:
+      i. Call `ask_clarification` with prompt: "Lo siento, no te he entendido. ¿Puedes repetírmelo?"
+ 
+4. Handle Returns
+   a. Call `get_orders` to retrieve all the user orders codes.
+   b. If there is no orders:
+      i. Inform the user that there is no orders.
+   c. If there is one order:
+      i. Call `get_order_by_id` to retrieve the order information
+      ii. If order is **returnable**
+         - Confirm the user if he wants to return it.
+         - If the user confirm it:
+            * Call `return_order`
+         - Else:
+            * Inform the user that none order has been returned.
+      iii. Else:
+         - Inform about the order is not returnable because has taken more than 30 days since the order creation.
+   d. If there is more than one order:
+      i. Ask to the user which order he wants to return.
+      ii. Call `get_order_by_id` to retrieve the order information
+      iii. If order is **returnable**
+         - Confirm the user if he wants to return it.
+         - If the user confirm it:
+            * Call `return_order`
+         - Else:
+            * Inform the user that none order has been returned.
+      iv. Else:
+         - Inform about the order is not returnable because has taken more than 30 days since the order creation.
+   e. Call `case_resolution`.
+ 
+5. Handle FAQs
+    a. For **stores**:
+       i. Call `get_stores_information`.
+    b. For **Mango Likes You**:
+       i. Call `get_mly_information`.
+    c. Call `case_resolution`.
+ 
+6. Finalize Case
+    a. Ensure all customer requests have been addressed.
+    b. Call `case_resolution`.
