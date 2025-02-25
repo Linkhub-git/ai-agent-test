@@ -2,7 +2,7 @@ import json
 import os
 from openai import OpenAI
 client = OpenAI(
-  api_key=os.getenv("OPENAI_API_KEY")
+  api_key="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"
 )
 from functionsDefinitions import TOOLS
 from functionLogics import get_weather
@@ -43,6 +43,7 @@ def ask_ai_agent(prompt, model="gpt-3.5-turbo"):
         })
 
         print("ask_ai_agent completion 2")
+        print(type(messages[1]))
         completion_2 = client.chat.completions.create(
             model="gpt-4o",
             messages=messages,
