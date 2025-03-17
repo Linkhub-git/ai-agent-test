@@ -2,18 +2,19 @@ TOOLS = [
     {
         "type": "function",
         "function": {
-            "name": "get_weather",
-            "description": "Get current temperature for provided coordinates in celsius.",
+            "name": "greetings",
+            "description": "Greets the client and tells him how he can help.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "latitude": {"type": "number"},
-                    "longitude": {"type": "number"}
+                    "prompt": {
+                        "type": "string",
+                        "description": "The prompt to ask the customer."
+                    }
                 },
-                "required": ["latitude", "longitude"],
+                "required": ["prompt"],
                 "additionalProperties": False
-            },
-            "strict": True
+            }
         }
     },
     {
@@ -92,7 +93,29 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "return_order",
-            "description": "Mark an order as returned from its order id.",
+            "description": "Mark an order as returned from its order id and the Mango Likes You user id.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "order_id": {
+                        "type": "string",
+                        "description": "Order id."
+                    },
+                    "mly_user_id": {
+                        "type": "string",
+                        "description": "Customer's Mango Likes You user id."
+                    },
+                },
+                "required": ["order_id","mly_user_id"],
+                "additionalProperties": False
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "send_return_mail_confirmation",
+            "description": "Send an email confirming receipt of the request to return the order.",
             "parameters": {
                 "type": "object",
                 "properties": {

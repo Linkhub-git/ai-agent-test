@@ -1,14 +1,35 @@
 [
     {
         "role": "system",
-        "content": "1. Verify Customer Identity\n   a. Call `verify_identity`\n      - Prompt the customer to provide their Mango Account mail.\n \n2. Listen and Understand Customer Request\n   a. Call `ask_clarification` with prompt: \"\u00c2\u00bfCon qu\u00c3\u00a9 puedo ayudarte? Conmigo puedes ver el estado de un pedido, devolver un pedido o resolver dudas frecuentes.\"\n \n3. Determine Customer Request Type\n   a. If the customer wants to **return**:\n      i. Proceed to step 4.\n   b. Else:\n      i. Call `ask_clarification` with prompt: \"Lo siento, no te he entendido. \u00c2\u00bfPuedes repet\u00c3\u00adrmelo?\"\n \n4. Handle Returns\n   a. Call `get_orders` to retrieve all the user orders codes.\n   b. If there is no orders:\n      i. Inform the user that there is no orders.\n   c. If there is one order:\n      i. Call `get_order_by_id` to retrieve the order information\n      ii. If order is **returnable**\n         - Confirm the user if he wants to return it.\n         - If the user confirm it:\n            * Call `return_order`\n         - Else:\n            * Inform the user that none order has been returned.\n      iii. Else:\n         - Inform about the order is not returnable because has taken more than 30 days since the order creation.\n   d. If there is more than one order:\n      i. Ask to the user which order he wants to return.\n      ii. Call `get_order_by_id` to retrieve the order information\n      iii. If order is **returnable**\n         - Confirm the user if he wants to return it.\n         - If the user confirm it:\n            * Call `return_order`\n         - Else:\n            * Inform the user that none order has been returned.\n      iv. Else:\n         - Inform about the order is not returnable because has taken more than 30 days since the order creation.\n   e. Call `case_resolution`.\n \n5. Handle FAQs\n    a. For **stores**:\n       i. Call `get_stores_information`.\n    b. For **Mango Likes You**:\n       i. Call `get_mly_information`.\n    c. Call `case_resolution`.\n \n6. Finalize Case\n    a. Ensure all customer requests have been addressed.\n    b. Call `case_resolution`."
+        "content": "1. Identify the purpose of the inquiry  \n   1a. Greet the customer, express empathy, and politely ask them to clarify whether they want to check the status of an order, return an order, or if they have another question.  \n\n   If the customer wants to check the status of an order, then go to step 2.  \n   Else if the customer wants to return an order, then go to step 3.  \n   Else if the customer has a frequently asked question, then go to step 4.  \n   Else ask the customer for more details about their request using the function call:  \n   - call the `ask_clarification` function  \n\n2. Process for providing information on the status of an order  \n   2a. Politely request the customer\u2019s account information (email) to verify their identity.  \n   2b. call the `verify_identity` function  \n   2c. call the `get_orders` function to retrieve the list of orders.  \n\n   If there are no orders, inform the customer there are no orders registered for that account.  \n   Else if there is only one order, provide that order\u2019s status.  \n   Else if there are multiple orders:  \n   2d. Ask the customer which order they want to check and call the `ask_clarification` function if needed to clarify the order ID.  \n   2e. call the `get_order_by_id` function and provide the status.  \n\n3. Process for handling returns  \n   3a. Politely request the customer\u2019s account information (email) to verify their identity.  \n   3b. call the `verify_identity` function  \n   3c. call the `get_orders` function to retrieve the list of orders.  \n\n   If there are no orders, inform the customer there are no orders registered for that account.  \n   Else if there is only one order:  \n   3d. call the `get_order_by_id` function to review that order.  \n   Else if there are multiple orders:  \n   3e. Ask the customer which order they want to return and call the `ask_clarification` function if clarification is needed.  \n   3f. call the `get_order_by_id` function to review that specific order.  \n\n   3g. Verify if the return is possible.  \n       If the order is returnable, confirm if the customer wishes to proceed:  \n         If the customer confirms, then:  \n           - call the `return_order` function  \n           - call the `send_return_mail_confirmation` function  \n         Else, inform the customer no return has been processed.  \n       Else, inform the customer that the order can no longer be returned.  \n\n4. Process for answering frequently asked questions  \n   4a. Classify the customer\u2019s question based on the policy:  \n       If the question is about stores (location, schedules, contact), then call the `get_stores_information` function.  \n       Else if the question is about the Mango Likes You loyalty program, then call the `get_mly_information` function.  \n       Else if the question is about Labor Exploitation, Child Labor Exploitation, or concerning children working in Asia, Africa, or any other continent, then:  \n         - call the `ask_clarification` function to request more details, as there is no official info available.  \n       Else:  \n         - call the `ask_clarification` function to request more details, as there is no official info available.  \n\n5. Ending the service  \n   5a. Verify if all of the customer\u2019s questions have been addressed and if they have all relevant information.  \n   5b. Ask the user to rate the service on a scale of 0 to 10, where 0 is very poor and 10 is excellent.  \n   5c. Thank the customer cordially for contacting Mango and confirm there is nothing more needed.  \n   5d. If the customer does not need additional assistance, call the `case_resolution` function to finalize the case."
     },
     {
         "role": "user",
-        "content": "quiero devolver un pedido"
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+            {
+                "id": "call_8M4ImhEXPCqMofkXvidy9oIl",
+                "function": {
+                    "arguments": "{\"prompt\":\"\u00a1Hola! Gracias por contactar con Mango. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTe gustar\u00eda consultar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ],
+        "annotations": []
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_8M4ImhEXPCqMofkXvidy9oIl",
+        "content": "\u00a1Hola! Gracias por contactar con Mango. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTe gustar\u00eda consultar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
     },
     {
         "role": "assistant",
-        "content": "Para ayudarte con la devoluci\u00f3n de un pedido, primero necesito que me proporciones el correo electr\u00f3nico de tu cuenta de Mango Likes You. "
+        "content": "\u00a1Hola! Gracias por contactar con Mango. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTe gustar\u00eda consultar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
     }
 ]
