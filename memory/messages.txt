@@ -1,7 +1,7 @@
 [
     {
         "role": "system",
-        "content": "1. Identify the purpose of the inquiry  \n   1a. Greet the customer, express empathy, and politely ask them to clarify whether they want to check the status of an order, return an order, or if they have another question.  \n\n   If the customer wants to check the status of an order, then go to step 2.  \n   Else if the customer wants to return an order, then go to step 3.  \n   Else if the customer has a frequently asked question, then go to step 4.  \n   Else ask the customer for more details about their request using the function call:  \n   - call the `ask_clarification` function  \n\n2. Process for providing information on the status of an order  \n   2a. Politely request the customer\u2019s account information (email) to verify their identity.  \n   2b. call the `verify_identity` function  \n   2c. call the `get_orders` function to retrieve the list of orders.  \n\n   If there are no orders, inform the customer there are no orders registered for that account.  \n   Else if there is only one order, provide that order\u2019s status.  \n   Else if there are multiple orders:  \n   2d. Ask the customer which order they want to check and call the `ask_clarification` function if needed to clarify the order ID.  \n   2e. call the `get_order_by_id` function and provide the status.  \n\n3. Process for handling returns  \n   3a. Politely request the customer\u2019s account information (email) to verify their identity.  \n   3b. call the `verify_identity` function  \n   3c. call the `get_orders` function to retrieve the list of orders.  \n\n   If there are no orders, inform the customer there are no orders registered for that account.  \n   Else if there is only one order:  \n   3d. call the `get_order_by_id` function to review that order.  \n   Else if there are multiple orders:  \n   3e. Ask the customer which order they want to return and call the `ask_clarification` function if clarification is needed.  \n   3f. call the `get_order_by_id` function to review that specific order.  \n\n   3g. Verify if the return is possible.  \n       If the order is returnable, confirm if the customer wishes to proceed:  \n         If the customer confirms, then:  \n           - call the `return_order` function  \n           - call the `send_return_mail_confirmation` function  \n         Else, inform the customer no return has been processed.  \n       Else, inform the customer that the order can no longer be returned.  \n\n4. Process for answering frequently asked questions  \n   4a. Classify the customer\u2019s question based on the policy:  \n       If the question is about stores (location, schedules, contact), then call the `get_stores_information` function.  \n       Else if the question is about the Mango Likes You loyalty program, then call the `get_mly_information` function.  \n       Else if the question is about Labor Exploitation, Child Labor Exploitation, or concerning children working in Asia, Africa, or any other continent, then:  \n         - call the `ask_clarification` function to request more details, as there is no official info available.  \n       Else:  \n         - call the `ask_clarification` function to request more details, as there is no official info available.  \n\n5. Ending the service  \n   5a. Verify if all of the customer\u2019s questions have been addressed and if they have all relevant information.  \n   5b. Ask the user to rate the service on a scale of 0 to 10, where 0 is very poor and 10 is excellent.  \n   5c. Thank the customer cordially for contacting Mango and confirm there is nothing more needed.  \n   5d. If the customer does not need additional assistance, call the `case_resolution` function to finalize the case."
+        "content": "1. Identify the purpose of the inquiry  \n   1a. Greet the customer, express empathy, and politely ask them to clarify whether they want to check the status of an order, return an order, or if they have another question.  \n\n   If the customer wants to check the status of an order, then go to step 2.  \n   Else if the customer wants to return an order, then go to step 3.  \n   Else if the customer has a frequently asked question, then go to step 4.  \n   Else ask the customer for more details about their request using the function call:  \n   - call the `ask_clarification` function  \n\n2. Process for providing information on the status of an order  \n   2a. Politely request the customer’s account information (email) to verify their identity.  \n   2b. call the `verify_identity` function  \n   2c. call the `get_orders` function to retrieve the list of orders.  \n\n   If there are no orders, inform the customer there are no orders registered for that account.  \n   Else if there is only one order, provide that order’s status.  \n   Else if there are multiple orders:  \n   2d. Ask the customer which order they want to check and call the `ask_clarification` function if needed to clarify the order ID.  \n   2e. call the `get_order_by_id` function and provide the status.  \n\n3. Process for handling returns  \n   3a. Politely request the customer’s account information (email) to verify their identity.  \n   3b. call the `verify_identity` function  \n   3c. call the `get_orders` function to retrieve the list of orders.  \n\n   If there are no orders, inform the customer there are no orders registered for that account.  \n   Else if there is only one order:  \n   3d. call the `get_order_by_id` function to review that order.  \n   Else if there are multiple orders:  \n   3e. Ask the customer which order they want to return and call the `ask_clarification` function if clarification is needed.  \n   3f. call the `get_order_by_id` function to review that specific order.  \n\n   3g. Verify if the return is possible.  \n       If the order is returnable, confirm if the customer wishes to proceed:  \n         If the customer confirms, then:  \n           - call the `return_order` function  \n           - call the `send_return_mail_confirmation` function  \n         Else, inform the customer no return has been processed.  \n       Else, inform the customer that the order can no longer be returned.  \n\n4. Process for answering frequently asked questions  \n   4a. Classify the customer’s question based on the policy:  \n       If the question is about stores (location, schedules, contact), then call the `get_stores_information` function.  \n       Else if the question is about the Mango Likes You loyalty program, then call the `get_mly_information` function.  \n       Else if the question is about Labor Exploitation, Child Labor Exploitation, or concerning children working in Asia, Africa, or any other continent, then:  \n         - call the `ask_clarification` function to request more details, as there is no official info available.  \n       Else:  \n         - call the `ask_clarification` function to request more details, as there is no official info available.  \n\n5. Ending the service  \n   5a. Verify if all of the customer’s questions have been addressed and if they have all relevant information.  \n   5b. Ask the user to rate the service on a scale of 0 to 10, where 0 is very poor and 10 is excellent.  \n   5c. Thank the customer cordially for contacting Mango and confirm there is nothing more needed.  \n   5d. If the customer does not need additional assistance, call the `case_resolution` function to finalize the case."
     },
     {
         "role": "user",
@@ -11,25 +11,750 @@
         "content": null,
         "refusal": null,
         "role": "assistant",
+        "annotations": [],
         "tool_calls": [
             {
-                "id": "call_8M4ImhEXPCqMofkXvidy9oIl",
+                "id": "call_06LuQ7BSZooVTN6kdrvwCwBq",
                 "function": {
-                    "arguments": "{\"prompt\":\"\u00a1Hola! Gracias por contactar con Mango. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTe gustar\u00eda consultar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
                     "name": "greetings"
                 },
                 "type": "function"
             }
-        ],
-        "annotations": []
+        ]
     },
     {
         "role": "tool",
-        "tool_call_id": "call_8M4ImhEXPCqMofkXvidy9oIl",
-        "content": "\u00a1Hola! Gracias por contactar con Mango. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTe gustar\u00eda consultar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+        "tool_call_id": "call_06LuQ7BSZooVTN6kdrvwCwBq",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
     },
     {
         "role": "assistant",
-        "content": "\u00a1Hola! Gracias por contactar con Mango. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTe gustar\u00eda consultar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_HaVPUnrpwWh0WWW25YIXdCEE",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_HaVPUnrpwWh0WWW25YIXdCEE",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_SCkw1h17wAOhJdHMWaFn5YIs",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_SCkw1h17wAOhJdHMWaFn5YIs",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_bTUGR1BihfcwdMyPEgJ9MB3A",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_bTUGR1BihfcwdMyPEgJ9MB3A",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_WVcB61HTZuf2rcvoF3Ss2Ugt",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_WVcB61HTZuf2rcvoF3Ss2Ugt",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_T1ZF482UdrhKxZIRpCe4BnWg",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_T1ZF482UdrhKxZIRpCe4BnWg",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_HmY9dSqqQZY4XprBlA2bGg2Z",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_HmY9dSqqQZY4XprBlA2bGg2Z",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_upKMgkcNoltPJH4t8YYKv74T",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_upKMgkcNoltPJH4t8YYKv74T",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_8dujcXuTcPrHcp83aqzA2jZe",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_8dujcXuTcPrHcp83aqzA2jZe",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_yQCN9g95mrS23j3FQDmNhOO6",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_yQCN9g95mrS23j3FQDmNhOO6",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_yXZU4pHRjSImbRradtlBdunS",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_yXZU4pHRjSImbRradtlBdunS",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_JQOnzqvOsn4ld4p9kEr1yXSN",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_JQOnzqvOsn4ld4p9kEr1yXSN",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_s1ylqhHfNn85Dc9EWdYAjxwI",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_s1ylqhHfNn85Dc9EWdYAjxwI",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_Jc7PGz8VyWztFvExqMkDcjXx",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_Jc7PGz8VyWztFvExqMkDcjXx",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_nU5ilphTFlVt7FUFWOPP0pLD",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_nU5ilphTFlVt7FUFWOPP0pLD",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_u3D4mxyaK2LyeQvO3nbxKCPH",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_u3D4mxyaK2LyeQvO3nbxKCPH",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_g8Z6qzAPICDgsIEh7CLgbscg",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_g8Z6qzAPICDgsIEh7CLgbscg",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_NXNln3njKJlsurDpX0JPzqXA",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_NXNln3njKJlsurDpX0JPzqXA",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_nra5WWoze45Sxi591uOEDcAy",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_nra5WWoze45Sxi591uOEDcAy",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_SXDuFrNr96ykBZH0z94x46wX",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_SXDuFrNr96ykBZH0z94x46wX",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_ZO14WEU7BP3cAIF5CXt3yG1g",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_ZO14WEU7BP3cAIF5CXt3yG1g",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_Hqu9C8TkML42oScwtbQ8yIe2",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_Hqu9C8TkML42oScwtbQ8yIe2",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_dkQp1CuhFh5TYODoKQfseR4Q",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_dkQp1CuhFh5TYODoKQfseR4Q",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_ivgx0Z6CZeyiehbNcB3OLyZU",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_ivgx0Z6CZeyiehbNcB3OLyZU",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_ifXRd28Nnclgovx6Kl7LNNLz",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_ifXRd28Nnclgovx6Kl7LNNLz",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "user",
+        "content": "hola"
+    },
+    {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "tool_calls": [
+            {
+                "id": "call_eDnrNIiXZ0ab1OzkT6mUZ3kL",
+                "function": {
+                    "arguments": "{\"prompt\":\"Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?\"}",
+                    "name": "greetings"
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "role": "tool",
+        "tool_call_id": "call_eDnrNIiXZ0ab1OzkT6mUZ3kL",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
+    },
+    {
+        "role": "assistant",
+        "content": "Hola! Bienvenido a Mango. ¿En qué puedo ayudarte hoy? ¿Te gustaría verificar el estado de un pedido, devolver un pedido, o tienes alguna otra pregunta?"
     }
 ]

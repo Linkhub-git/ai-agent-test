@@ -6,8 +6,18 @@ client = OpenAI(
   api_key=settings.OPENAI_API_KEY
 )
 from functionsDefinitions import TOOLS
-from functionLogics import verify_identity, greetings, ask_clarification, get_orders, get_order_by_id, return_order, get_stores_information, get_mly_information, case_resolution, send_return_mail_confirmation, get_routine, get_memory, save_memory
+from functionLogics import  greetings, save_memory
 from openai.types.chat import ChatCompletionMessage
+from utils import create_reasoning_message
+from image_recognition import recognize_image_b64
+from image_generation import generate_image_by_url
+from image_generation import generate_image_base64
+from image_processing import process_images, process_images_json
+from image_embeddings import create_image_embedding, calculate_cosine_similarity, load_images_embeddings, calculate_cosine_similarity
+from html_generation import create_output_file, insert_title_1, insert_title_2, insert_text, insert_image, end_output_file
+import time
+#from processing_json import process_card_jsons
+
 
 def ensure_string(value):
     if isinstance(value, list):
@@ -29,26 +39,9 @@ def read_text_file(file_path):
         raise
     
 def call_function(name, session_id, args):
-    if name == "verify_identity":
-        return verify_identity(**args)
-    if name == "ask_clarification":
-        return ask_clarification(**args)
-    if name == "get_orders":
-        return get_orders(**args)
-    if name == "get_order_by_id":
-        return get_order_by_id(**args)
-    if name == "return_order":
-        return return_order(**args)
-    if name == "get_stores_information":
-        return get_stores_information(**args)
-    if name == "get_mly_information":
-        return get_mly_information(session_id)
-    if name == "case_resolution":
-        return case_resolution(**args)
     if name == "greetings":
         return greetings(**args)
-    if name == "send_return_mail_confirmation":
-        return send_return_mail_confirmation(**args)
+    
     
 def chat_completion_message_to_dict(message):
     """
@@ -73,8 +66,8 @@ def save_array_to_file(array, file_path):
         else:
             serializable_array.append(item)
     
-    print(f"Guardamos memoria")
-    json_string = json.dumps(serializable_array, indent=4)
+    print("Guardamos memoria")
+    json_string = json.dumps(serializable_array, ensure_ascii=False, indent=4)
     with open(file_path, 'w') as file:
         file.write(json_string)
     print(f"Array de objetos guardado en {file_path}")
@@ -127,7 +120,7 @@ def write_memory(array, session_id):
         else:
             serializable_array.append(item)
     
-    print(f"Guardamos memoria")
+    print("Guardamos memoria")
     json_string = json.dumps(serializable_array, indent=4)
     save_memory(session_id, json_string)
     print(f"Array de objetos guardado en memoria_{session_id}")
@@ -137,8 +130,23 @@ def ask_ai_agent(query, session_id, model="gpt-3.5-turbo"):
     Envía un prompt al modelo de OpenAI y devuelve la respuesta.
     """
     try:
-        print("ask_ai_agent completion 1")
+        print("ask_ai_agent completion START")
+        #embedding_one = create_image_embedding('./output/pictures/output_0.jpg')
+        #embedding_two = create_image_embedding('./output/pictures/output_0.jpg')
+        #similarity = calculate_cosine_similarity(embedding_one, embedding_two)
+        #embeddings = load_embeddings()
+        #simirat = calculate_cosine_similarity_two(embeddings[0], embeddings[1])
+        #images = read_images_array_from_file()
+        #load_images_embeddings(images)
+        #process_images()
+        #cards_json = create_cards_jsons()
+        #cards_json_string = json.dumps(cards_json, ensure_ascii=False)
+        #with open('./data/cards_json_punto.json', 'w') as file:
+        #    file.write(cards_json_string)
+        process_card_jsons()
+        
         memory_messages = read_array_from_file('./memory/messages.txt')
+        
         if len(memory_messages) > 0:
             messages = memory_messages
         else:
@@ -159,26 +167,35 @@ def ask_ai_agent(query, session_id, model="gpt-3.5-turbo"):
             
             if completion.choices[0].message.tool_calls and len(completion.choices[0].message.tool_calls) > 0:
                 # append model's function call message
+                reasoning_message = create_reasoning_message(chat_completion_message_to_dict(completion.choices[0].message))
                 messages.append(completion.choices[0].message)
                 print(completion.choices[0].message)
+                time.sleep(2)
                 for tool_call in completion.choices[0].message.tool_calls:
                     name = tool_call.function.name
                     args = json.loads(tool_call.function.arguments)
 
                     result = call_function(name, session_id, args)
+                    reasoning_message = reasoning_message + "<br>" + create_reasoning_message({
+                        "role": "tool",
+                        "tool_call_id": tool_call.id,
+                        "content": ensure_string(result)
+                })
                     messages.append({
                         "role": "tool",
                         "tool_call_id": tool_call.id,
                         "content": ensure_string(result)
 
                 })
+                    time.sleep(2)
+                yield {"razonamiento": reasoning_message, "respuesta": None}
                 continue
             
             condicion = False
-            messages.append({"role": "assistant", "content":completion.choices[0].message.content.replace("**", "*")}) 
+            messages.append({"role": "assistant", "content":completion.choices[0].message.content.replace('**', '*')}) 
             save_array_to_file(messages, './memory/messages.txt')
             print("ask_ai_agent completion END")
-            return completion.choices[0].message.content.replace("**", "*")    
+            yield {"razonamiento": "<b>Finalizado</b>", "respuesta": f"{completion.choices[0].message.content.replace('**', '*')}"}    
  
     except Exception as e:
         print("Error al llamar a la API:", e)
