@@ -10,7 +10,7 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | Intake-Agent        | 🧠  Razonando … entidades:{monto:2.5M, moneda:PEN, vig:2026-06-30, ejecutivo:“JM.Salcedo”}",
-            "sleep": 5
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | Intake-Agent        | 🗄️  Vector-search confirma cliente existente (ID #CLI-004576)",
@@ -18,7 +18,7 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | linkhub-eval-Agent  | 🔍  Evaluando métricas de control del proceso Intake",
-            "sleep": 3
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | linkhub-eval-Agent  | 🆗  Métricas correctas 98%",
@@ -30,11 +30,11 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:15Z | KYC-Risk-Agent      | 🔍  Descargando poderes notariales (Hiperfirmas API)…",
-            "sleep": 5
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:18Z | KYC-Risk-Agent      | 🖼️  OCR y verificación de firma → MATCH = 98.6 %",
-            "sleep": 3
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:18Z | KYC-Risk-Agent      | 🌐  Listas sanciones consultadas (OFAC, ONU, EU) → NO_MATCH",
@@ -50,7 +50,7 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | linkhub-eval-Agent  | 🔍  Evaluando métricas de control del proceso KYC-Risk",
-            "sleep": 3
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | linkhub-eval-Agent  | 🆗  Métricas correctas 95%",
@@ -62,7 +62,7 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:21Z | Data-Entry-RPA      | 🤖  Lanzando robot UiPath “IBS-CF-Create”",
-            "sleep": 5
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:23Z | Data-Entry-RPA      | ⌨️  Login IBS - usuario:bot_cf, MFA token OK",
@@ -74,7 +74,7 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:30Z | Data-Entry-RPA      | 🔄  Insertando datos en SP Desembolsos - opID:SP-CF-21894",
-            "sleep": 5
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:33Z | Data-Entry-RPA      | 💾  Guardado correcto - 3 s",
@@ -86,7 +86,7 @@ def fake_ask_agent(mensaje_usuario):
         },
                 {
             "reasoning": "2025-04-22T09:02:12Z | linkhub-eval-Agent  | 🔍  Evaluando métricas de control del proceso Data-Entry-RPA",
-            "sleep": 3
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:12Z | linkhub-eval-Agent  | 🆗  Métricas correctas 100%",
@@ -94,15 +94,15 @@ def fake_ask_agent(mensaje_usuario):
         },
         {
             "reasoning": "2025-04-22T09:02:34Z | Validator-Agent     | 📝  Checklist dinámico (14 ítems) generado",
-            "sleep": 2
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:35Z | Validator-Agent     | ✅  Ítem(1) Carta solicitud → OK",
-            "sleep": 3
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:35Z | Validator-Agent     | ✅  Ítem(2) Contrato marco → OK",
-            "sleep": 3
+            "sleep": 1
         },
         {
             "reasoning": "2025-04-22T09:02:36Z | Validator-Agent     | ⚠️  Ítem(3) Garantía mobiliaria → PENDIENTE",
